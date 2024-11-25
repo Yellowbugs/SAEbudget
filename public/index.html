@@ -1,14 +1,41 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-<link rel="icon" href="img/favicon.ico" type="image/x-icon">
-<title>SAE budget</title>
-<script src="index.js"></script>    
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <link rel="icon" href="img/favicon.ico"   type="image/x-icon">
+  <script src="index.js"></script>    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-    username:<br>
-    <textarea id="username"></textarea><br>
-    password:<br>
-    <textarea id="password"></textarea><br>
-    <button onclick="login()">login</button>
+  <style>
+   body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+           background: linear-gradient(135deg, #1a1a1a, #3d3d3d, #1a1a1a);
+            background-size: 400% 400%;
+            color: white;
+        }
+        .login-container {
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+  </style>
+    <div class="login-container">
+        <h1>SAE Budget</h1>
+        <form action="/submit" method="POST">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <br><br>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <br><br>
+            <button onclick="login()">login</button>
+        </form>
+    </div>
 </body>
