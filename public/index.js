@@ -13,3 +13,7 @@ function login(){
         }
     });
 }
+
+function TwoFA(){
+   
+}
