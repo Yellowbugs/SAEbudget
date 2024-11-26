@@ -2,9 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const { Client } = require('pg')
+const { Pool } = require('pg')
 var conString = 'postgresql://saebudgetdb_user:cqqkgEHDgj0QBUa2zhgNzrOm0rfBANbr@dpg-ct2or1jv2p9s73b0b0gg-a/saebudgetdb'
-const client = new Client(conString)
+const pool = new Pool(conString)
 
 const app = express();
 const PORT = process.env.PORT || 10000;
@@ -22,10 +22,9 @@ app.get('/dashboard', function (req, res) {
 
 app.post('/login', urlencodedParser, function(req,res) {
     var successfulLogin = loginAttempt(req.body.username, req.body.password)
-    client.end()
 
     if (successfulLogin){
-        res.send(200)
+        res.sendStatus(200)
     }
     else{
         res.sendStatus(404)
@@ -37,9 +36,10 @@ async function loginAttempt(attemptedUsername, attemptedPassword) {
     const values = [attemptedUsername, attemptedPassword];
 
     try {
-        await client.connect()
-        const res = await client.query(query, values);
-
+        const res = await pool.query(query, values);
+        console.log(res.rows)
+        console.log(attemptedUsername)
+        console.log(attemptedPassword)
         if (res.rows.length > 0) {
             console.log('Authentication successful!');
             return true;
