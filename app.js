@@ -4,7 +4,6 @@ const path = require('path');
 
 const { Client } = require('pg')
 var conString = 'postgresql://saebudgetdb_user:cqqkgEHDgj0QBUa2zhgNzrOm0rfBANbr@dpg-ct2or1jv2p9s73b0b0gg-a/saebudgetdb'
-const client = new Client(conString)
 
 const app = express();
 const PORT = process.env.PORT || 10000;
@@ -37,7 +36,8 @@ async function loginAttempt(attemptedUsername, attemptedPassword) {
     const values = [attemptedUsername, attemptedPassword];
 
     try {
-        const res = await pool.query(query, values);
+        await client.connect()
+        const res = await client.query(query, values);
 
         if (res.rows.length > 0) {
             console.log('Authentication successful!');
