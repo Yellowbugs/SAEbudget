@@ -8,7 +8,7 @@ const pool = new Pool({
     connectionString: conString,
     ssl: { rejectUnauthorized: false },  
   });
-  
+
 const app = express();
 const PORT = process.env.PORT || 10000;
 
@@ -24,7 +24,7 @@ app.get('/dashboard', function (req, res) {
 
 
 app.post('/login', urlencodedParser, function(req,res) {
-    var successfulLogin = loginAttempt(req.body.username, req.body.password)
+    var successfulLogin = await loginAttempt(req.body.username, req.body.password)
 
     if (successfulLogin){
         res.sendStatus(200)
