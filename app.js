@@ -21,17 +21,33 @@ app.get('/dashboard', function (req, res) {
 
 
 app.post('/login', urlencodedParser, function(req,res) {
-    client.connect(function(err) {
-        if (err) throw err;
-        console.log("Connected!");
-      });
-    if(req.body.username == "Josh" && req.body.password == "12345"){
-        res.sendStatus(200)
+    var successfulLogin = loginAttempt(req.body.usernamereq.body.username, req.body.password)
+    if (successfulLogin){
+        res.send(200)
     }
     else{
         res.sendStatus(404)
     }
 });
+
+async function loginAttempt(attemptedUsername, attempedPassword) {
+    const usernameQuery = 'SELECT username FROM users' 
+    const passwordQuery = 'SELECT password FROM users'
+  
+    try {
+      await client.connect()
+      const usernames = await client.query(usernameQuery)
+      const passwords = await client.query(passwordQuery)
+
+      console.log(usernames.rows)
+      console.log(passwords.rows)
+    } catch (err) {
+      console.error('Error executing query:', err.message)
+    } finally {
+      await client.end();
+    }
+    return usernames.rows.some(row => row.username === attemptedUsername) && passwords.rows.some(row => row.password === attempedPassword)
+  }
 
 
 
