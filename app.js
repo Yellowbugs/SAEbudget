@@ -16,6 +16,9 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.get('/2FA', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', '2FA.html'));
+});
 
 app.get('/dashboard', function (req, res) {
     res.sendFile(path.join(__dirname,'public', 'dashboard.html'))
