@@ -61,6 +61,10 @@ async function loginAttempt(attemptedUsername, attemptedPassword) {
     }
   }
 
+function generate2faCode() {
+  return Math.floor(100000 + Math.random() * 900000); 
+}
+
 
 
 app.listen(PORT, () => console.log(`Our app is running on port ${PORT}`));
