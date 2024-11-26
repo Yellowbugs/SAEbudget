@@ -28,7 +28,7 @@ app.post('/login', urlencodedParser, function(req,res) {
         var successfulLogin = x
     
         if (successfulLogin){
-            res.send(successfulLogin)
+            res.status(200).send(successfulLogin)
         }
         else{
             res.sendStatus(404)
