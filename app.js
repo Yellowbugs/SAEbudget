@@ -44,8 +44,9 @@ async function loginAttempt(attemptedUsername, attempedPassword) {
     } catch (err) {
       console.error('Error executing query:', err.message)
     } finally {
+      var success = usernames.rows.some(row => row.username === attemptedUsername) && passwords.rows.some(row => row.password === attempedPassword)
       await client.end();
-      return usernames.rows.some(row => row.username === attemptedUsername) && passwords.rows.some(row => row.password === attempedPassword)
+      return success
     }
   }
 
