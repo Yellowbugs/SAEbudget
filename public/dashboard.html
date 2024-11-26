@@ -1,7 +1,102 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>SAE budget</title>
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
-</head>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            height: 100vh;
+        }
 
-<body>Dashboard</body>    
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #111;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+        }
+
+        .sidebar h1 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #ccc;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            display: block;
+        }
+
+        .sidebar a:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            overflow-y: auto;
+        }
+
+        .card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        .card p {
+            color: #555;
+        }
+
+        /* Tags */
+        .tag {
+            display: inline-block;
+            background-color: #007BFF;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h1>SAE Budget</h1>
+        <a href="#">Profile</a>
+        <a href="#">Receipts</a>
+        <a href="#">Requests</a>
+        <a href="#">Settings</a>
+        <a href="#"></a>
+        <a href="#"></a>
+        
+    </div>
+
+    <div class="main-content">
+        <div class="card">
+            <h2>Name</h2>
+            <p><strong>Position:</strong> Social Chair</p>
+            <p><strong>Term:</strong> 2024-2025</p>
+            <p><strong>Current Budget</strong> 10,000</p>
+            <p><strong>Starting Amount</strong> 15,000</p>
+        </div>
+    </div>
+</body>   
