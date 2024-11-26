@@ -22,6 +22,8 @@ app.get('/dashboard', function (req, res) {
 
 app.post('/login', urlencodedParser, function(req,res) {
     var successfulLogin = loginAttempt(req.body.username, req.body.password)
+    client.end()
+
     if (successfulLogin){
         res.send(200)
     }
@@ -30,23 +32,23 @@ app.post('/login', urlencodedParser, function(req,res) {
     }
 });
 
-async function loginAttempt(attemptedUsername, attempedPassword) {
-    const usernameQuery = 'SELECT username FROM users' 
-    const passwordQuery = 'SELECT password FROM users'
-  
-    try {
-      await client.connect()
-      const usernames = await client.query(usernameQuery)
-      const passwords = await client.query(passwordQuery)
+async function loginAttempt(attemptedUsername, attemptedPassword) {
+    const query = 'SELECT * FROM users WHERE username = $1 AND password = $2';
+    const values = [attemptedUsername, attemptedPassword];
 
-      console.log(usernames.rows)
-      console.log(passwords.rows)
+    try {
+        const res = await pool.query(query, values);
+
+        if (res.rows.length > 0) {
+            console.log('Authentication successful!');
+            return true;
+        } else {
+            console.log('Authentication failed.');
+            return false;
+        }
     } catch (err) {
-      console.error('Error executing query:', err.message)
-    } finally {
-      var success = usernames.rows.some(row => row.username === attemptedUsername) && passwords.rows.some(row => row.password === attempedPassword)
-      await client.end();
-      return success
+        console.error('Error executing query:', err.message);
+        throw err;
     }
   }
 
