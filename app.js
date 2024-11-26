@@ -24,14 +24,16 @@ app.get('/dashboard', function (req, res) {
 
 
 app.post('/login', urlencodedParser, function(req,res) {
-    var successfulLogin = loginAttempt(req.body.username, req.body.password)
-    console.log(successfulLogin)
-    if (successfulLogin){
-        res.sendStatus(200)
-    }
-    else{
-        res.sendStatus(404)
-    }
+    loginAttempt(req.body.username, req.body.password).then(x => { 
+        var successfulLogin = x
+    
+        if (successfulLogin){
+            res.sendStatus(200)
+        }
+        else{
+            res.sendStatus(404)
+        }
+    })  
 });
 
 async function loginAttempt(attemptedUsername, attemptedPassword) {
