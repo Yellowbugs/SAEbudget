@@ -38,17 +38,17 @@ app.post('/login', urlencodedParser, function(req,res) {
 });
 
 async function loginAttempt(attemptedUsername, attemptedPassword) {
-    const query = 'SELECT json_agg(t) FROM (SELECT * FROM users WHERE username = $1 AND password = $2) t';
+    const query = 'SELECT * FROM users WHERE username = $1 AND password = $2';
     const values = [attemptedUsername, attemptedPassword];
 
     try {
         const res = await pool.query(query, values);
-        console.log(res[0])
+        console.log(res.rows)
         console.log(attemptedUsername)
         console.log(attemptedPassword)
-        if (res[0]) {
+        if (res.rows.length > 0) {
             console.log('Authentication successful!');
-            return res[0];
+            return res.rows[0];
         } else {
             console.log('Authentication failed.');
             return false;

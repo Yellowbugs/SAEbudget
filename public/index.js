@@ -4,7 +4,9 @@ function login(){
     .done(function(data) {
         alert('Login successful!');
         window.location.href = '/dashboard';
-        window.document.getElementById('name').innerText = data['first name'] + " " + data['last name']
+        console.log(data)
+        console.log(data['first name'])
+        //window.document.getElementById('name').innerText = data['first name'] + " " + data['last name']
     })
     .fail(function(jqXHR) {
         if (jqXHR.status === 404) {
