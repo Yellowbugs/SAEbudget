@@ -21,7 +21,7 @@ app.get('/dashboard', function (req, res) {
 
 
 app.post('/login', urlencodedParser, function(req,res) {
-    var successfulLogin = loginAttempt(req.body.usernamereq.body.username, req.body.password)
+    var successfulLogin = loginAttempt(req.body.username, req.body.password)
     if (successfulLogin){
         res.send(200)
     }
