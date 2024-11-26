@@ -28,6 +28,7 @@ app.post('/login', urlencodedParser, function(req,res) {
         var successfulLogin = x
     
         if (successfulLogin){
+            res.send(successfulLogin)
             res.sendStatus(200)
         }
         else{
@@ -47,7 +48,7 @@ async function loginAttempt(attemptedUsername, attemptedPassword) {
         console.log(attemptedPassword)
         if (res.rows.length > 0) {
             console.log('Authentication successful!');
-            return true;
+            return res.rows[0];
         } else {
             console.log('Authentication failed.');
             return false;
