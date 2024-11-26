@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>OTP Verification</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #3d3d3d, #1a1a1a);
+            background-size: 400% 400%;
+            color: white;
+        }
+
+        .otp-container {
+            text-align: center;
+            border: 1px solid #ccc;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: #2c2c2c;
+        }
+    </style>
+</head>
+<body>
+    <div class="otp-container">
+        <h1>OTP Verification</h1>
+        <p>An email with an OTP has been sent to your registered email address.</p>
+        <form onsubmit="event.preventDefault(); verifyOtp();">
+            <label for="otp">Enter OTP:</label>
+            <input type="text" id="otp" name="otp" required>
+            <br><br>
+            <button type="submit">Verify</button>
+        </form>
+    </div>
