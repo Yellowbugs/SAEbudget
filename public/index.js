@@ -14,3 +14,31 @@ function login(){
     });
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const sendEmailButton = document.getElementById('send-email');
+
+    sendEmailButton.addEventListener('click', async () => {
+        try {
+            const response = await fetch('/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: 'harvey.a.barnes@gmail.com', // Replace this with dynamic email input if necessary
+                    message: 'Your 2FA code is on the way!', // Optional: Adjust message logic if needed
+                }),
+            });
+
+            if (response.ok) {
+                alert('Email sent successfully!');
+            } else {
+                alert('Failed to send email.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred.');
+        }
+    });
+});
+
