@@ -14,9 +14,7 @@ function login(){
     });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
     const sendEmailButton = document.getElementById('send-email');
-
     sendEmailButton.addEventListener('click', async () => {
         try {
             const response = await fetch('/send-email', {
@@ -40,5 +38,5 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('An error occurred.');
         }
     });
-});
+
 
