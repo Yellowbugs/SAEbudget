@@ -13,7 +13,7 @@ function login(){
         }
     });
 }
-
+function TwoFA(){
     const sendEmailButton = document.getElementById('send-email');
     sendEmailButton.addEventListener('click', async () => {
         try {
@@ -38,5 +38,5 @@ function login(){
             alert('An error occurred.');
         }
     });
-
+}
 
