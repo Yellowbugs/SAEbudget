@@ -60,6 +60,34 @@ async function loginAttempt(attemptedUsername, attemptedPassword) {
         throw err;
     }
   }
+function generate2faCode() {
+        return Math.floor(100000 + Math.random() * 900000); 
+    }
+var Code = generate2faCode();
+//2fa shit work in progress
+
+app.post("/send-email", async (req, res) => {
+  const { email, message } = req.body;
+     const nodemailer = require("nodemailer");
+     const transporter = nodemailer.createTransport({
+        host:'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user: "saebudget@gmail.com",
+            pass: "vddb oqvk onuv rrec"
+        },
+    });
+   transporter.sendMail({
+       to: 'harvey.a.barnes@gmail.com',
+       subject:'Your 2 factor Authentication Code'
+       html:'<h1>hello<h1>'
+    }).then(() => {
+        console.log('Email sent');
+    }).catch(err => {
+        console.error(err);
+    });
+});
 
 
 
