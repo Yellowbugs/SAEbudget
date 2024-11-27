@@ -12,6 +12,8 @@ const pool = new Pool({
 const app = express();
 const PORT = process.env.PORT || 10000;
 
+app.use(bodyParser.json());
+
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(express.static(path.join(__dirname, 'public')));
