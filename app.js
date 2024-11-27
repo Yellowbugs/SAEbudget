@@ -66,9 +66,10 @@ function generate2faCode() {
     }
 var Code = generate2faCode();
 //2fa shit work in progress
-import nodemailer from 'nodemailer'
+
 app.post("/send-email", async (req, res) => {
   const { email, message } = req.body;
+     const nodemailer = require("nodemailer");
     const transporter = nodemailer.createTransport({
         host:'smtp.gmail.com',
         port: 465,
