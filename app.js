@@ -66,23 +66,25 @@ function generate2faCode() {
     }
 var Code = generate2faCode();
 //2fa shit work in progress
+import nodemailer from 'nodemailer'
 app.post("/send-email", async (req, res) => {
   const { email, message } = req.body;
 
     const nodemailer = require("nodemailer");
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+        host:'smtp.gmail.com',
+        port: 465,
+        secure: true,
       auth: {
         user: "saebudget@gmail.com",
-        pass: "SAEBudget2025",
+        pass: "vddb oqvk onuv rrec"
       },
     });
-    const mailOptions = {
-        from: "saebudget@gmail.com",
+    transporter.sendMail({
         to: harvey.a.barnes@gmail.com,
         subject: "Your 2-factor Authentication Code",
-        text: Code,
-      };
+        html: '<h1>Code</h1>'
+      });
 });
 
 
