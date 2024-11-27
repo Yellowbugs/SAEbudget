@@ -85,7 +85,7 @@ app.post("/send-email", async (req, res) => {
       await transporter.sendMail({
           to: email,
           subject: "Your 2-factor Authentication Code",
-          html: `<h1>${message}</h1>`,
+          html: `<h1>Code</h1>`,
       });
       res.status(200).send('Email sent successfully');
   } catch (error) {
