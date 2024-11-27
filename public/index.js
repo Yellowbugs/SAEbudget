@@ -13,9 +13,9 @@ function login(){
         }
     });
 }
-function TwoFA(){
-    const sendEmailButton = document.getElementById('send-email');
-    sendEmailButton.addEventListener('click', async () => {
+function TwoFA() {
+    // No need to bind another click event listener, execute functionality directly
+    (async () => {
         try {
             const response = await fetch('/send-email', {
                 method: 'POST',
@@ -37,6 +37,5 @@ function TwoFA(){
             console.error('Error:', error);
             alert('An error occurred.');
         }
-    });
+    })();
 }
-
