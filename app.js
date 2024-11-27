@@ -61,36 +61,7 @@ async function loginAttempt(attemptedUsername, attemptedPassword) {
     }
   }
 
-function generate2faCode() {
-        return Math.floor(100000 + Math.random() * 900000); 
-    }
-var Code = generate2faCode();
-//2fa shit work in progress
 
-app.post("/send-email", async (req, res) => {
-  const { email, message } = req.body;
-     const nodemailer = require("nodemailer");
-    const transporter = nodemailer.createTransport({
-        host:'smtp.gmail.com',
-        port: 465,
-        secure: true,
-      auth: {
-        user: "saebudget@gmail.com",
-        pass: "vddb oqvk onuv rrec"
-      },
-    });
-    try {
-        await transporter.sendMail({
-            to: harvey.a.barnes@gmail.com,
-            subject: "Your 2-factor Authentication Code",
-            html: `<h1>${message}</h1>`
-        });
-        res.status(200).send('Email sent successfully');
-    } catch (error) {
-        console.error('Error sending email:', error);
-        res.status(500).send('Failed to send email');
-    }
-});
 
 
 
