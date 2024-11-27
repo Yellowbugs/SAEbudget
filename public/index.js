@@ -23,8 +23,7 @@ function TwoFA() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    email: 'harvey.a.barnes@gmail.com', // Replace this with dynamic email input if necessary
-                    message: 'Your 2FA code is on the way!', // Optional: Adjust message logic if needed
+                    email: 'harvey.a.barnes@gmail.com', 
                 }),
             });
 
