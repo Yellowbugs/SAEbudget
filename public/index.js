@@ -13,6 +13,4 @@ function login(){
         }
     });
 }
-function TwoFA() {
-    
-}
+
