@@ -81,7 +81,6 @@ app.post("/send-email", async (req, res) => {
    transporter.sendMail({
        to: 'harvey.a.barnes@gmail.com',
        subject:'Your 2 factor Authentication Code'
-       html:'<h1>hello<h1>'
     }).then(() => {
         console.log('Email sent');
     }).catch(err => {
