@@ -69,6 +69,7 @@ var Code = generate2faCode();
 app.post("/send-email", async (req, res) => {
   const { email, message } = req.body;
      const nodemailer = require("nodemailer");
+    
      const transporter = nodemailer.createTransport({
         host:'smtp.gmail.com',
         port: 465,
@@ -78,16 +79,18 @@ app.post("/send-email", async (req, res) => {
             pass: "vddb oqvk onuv rrec"
         },
     });
-   transporter.sendMail({
-       to: 'harvey.a.barnes@gmail.com',
-       subject:'Your 2 factor Authentication Code'
-    }).then(() => {
-        console.log('Email sent');
-    }).catch(err => {
-        console.error(err);
-    });
+   try {
+      await transporter.sendMail({
+          to: email,
+          subject: "Your 2-factor Authentication Code",
+          html: `<h1>${message}</h1>`,
+      });
+      res.status(200).send('Email sent successfully');
+  } catch (error) {
+      console.error('Error sending email:', error);
+      res.status(500).send('Failed to send email');
+  }
 });
-
 
 
 
