@@ -65,11 +65,12 @@ async function loginAttempt(attemptedUsername, attemptedPassword) {
 function generate2faCode() {
         return Math.floor(100000 + Math.random() * 900000); 
     }
-var Code = generate2faCode();
+let Code;
 //2fa shit work in progress
 
 app.post("/send-email", async (req, res) => {
-  const { email, message } = req.body;
+``Code = generate2faCode();
+  const { email } = req.body;
      const nodemailer = require("nodemailer");
     
      const transporter = nodemailer.createTransport({
@@ -85,7 +86,7 @@ app.post("/send-email", async (req, res) => {
       await transporter.sendMail({
           to: email,
           subject: "Your 2-factor Authentication Code",
-          html: `<h1>Code</h1>`,
+          html: `<h1>Your Code is: ${Code}</h1>`,
       });
       res.status(200).send('Email sent successfully');
   } catch (error) {
