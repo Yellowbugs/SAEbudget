@@ -66,33 +66,34 @@ function generate2faCode() {
         return Math.floor(100000 + Math.random() * 900000); 
     }
 let Code;
-//2fa shit work in progress
 
 app.post("/send-email", async (req, res) => {
-  Code = generate2faCode();
-  const { email } = req.body;
-     const nodemailer = require("nodemailer");
-    
-     const transporter = nodemailer.createTransport({
-        host:'smtp.gmail.com',
+    Code = generate2faCode(); // Generate a new 2FA code
+    const email = 'harvey.a.barnes@gmail.com'; //chnage to yours if u want to test. eventually needs to be chnaged to email corresponding to username/password
+
+    const nodemailer = require("nodemailer");
+
+    const transporter = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
         port: 465,
         secure: true,
         auth: {
             user: "saebudget@gmail.com",
-            pass: "vddb oqvk onuv rrec"
+            pass: "vddb oqvk onuv rrec",
         },
     });
-   try {
-      await transporter.sendMail({
-          to: email,
-          subject: "Your 2-factor Authentication Code",
-          html: `<h1>Your Code is: ${Code}</h1>`,
-      });
-      res.status(200).send('Email sent successfully');
-  } catch (error) {
-      console.error('Error sending email:', error);
-      res.status(500).send('Failed to send email');
-  }
+
+    try {
+        await transporter.sendMail({
+            to: email,
+            subject: "Your 2-factor Authentication Code",
+            html: `<h1>Your Code is: ${Code}</h1>`, // Include the generated code in the email
+        });
+        res.status(200).send('Email sent successfully');
+    } catch (error) {
+        console.error('Error sending email:', error);
+        res.status(500).send('Failed to send email');
+    }
 });
 
 app.post('/verify-code', (req, res) => {
