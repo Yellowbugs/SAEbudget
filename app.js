@@ -69,7 +69,7 @@ let Code;
 //2fa shit work in progress
 
 app.post("/send-email", async (req, res) => {
-``Code = generate2faCode();
+  Code = generate2faCode();
   const { email } = req.body;
      const nodemailer = require("nodemailer");
     
