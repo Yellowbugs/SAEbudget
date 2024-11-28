@@ -23,7 +23,7 @@ function TwoFA() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    email: 'harvey.a.barnes@gmail.com', 
+                    email: 'harvey.a.barnes@gmail.com', //set to my email for now, needs to be changed to email corresposding with username and password
                 }),
             });
 
@@ -41,7 +41,6 @@ function TwoFA() {
 
 function verifyCode() {
     const enteredCode = document.getElementById('2facode').value;
-
     (async () => {
         try {
             const response = await fetch('/verify-code', {
