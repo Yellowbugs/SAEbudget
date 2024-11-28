@@ -95,6 +95,14 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
+app.post('/verify-code', (req, res) => {
+    const { enteredCode } = req.body;
+    if (parseInt(enteredCode, 10) === Code) {
+        res.status(200).send('Code verified successfully');
+    } else {
+        res.status(400).send('Invalid code');
+    }
+});
 
 
 
