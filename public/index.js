@@ -38,5 +38,8 @@ function TwoFA() {
         }
     })();
 }
+function verifyCode(){
+    
+}
 
 
