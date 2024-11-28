@@ -14,17 +14,10 @@ function login(){
     });
 }
 function TwoFA() {
-    // No need to bind another click event listener, execute functionality directly
     (async () => {
         try {
             const response = await fetch('/send-email', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    email: 'harvey.a.barnes@gmail.com', //set to my email for now, needs to be changed to email corresposding with username and password
-                }),
             });
 
             if (response.ok) {
